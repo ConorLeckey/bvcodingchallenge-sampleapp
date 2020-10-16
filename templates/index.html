@@ -81,35 +81,37 @@
         </section>
 
         <section class="mb-5">
-            <div class="container-xl bg-light">
-                <div class="row">
-                    <div class="col p-3">
-                        <h5 class="mb-3">Beers by overall average</h5>
-                        <div class="table-responsive">
-                            <!-- HINT: Bootstrap tables - https://getbootstrap.com/docs/4.5/content/tables/ -->
-                            <table class="table table-striped bg-white">
-                                <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <!-- HINT: Jinja loops may also work well here! -->
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                </tbody>
-                            </table>
+            {% for list in lists %}
+                <div class="container-xl bg-light">
+                    <div class="row">
+                        <div class="col p-3">
+                            <h5 class="mb-3">{{ list.title }}</h5>
+                            <div class="table-responsive">
+                                <!-- HINT: Bootstrap tables - https://getbootstrap.com/docs/4.5/content/tables/ -->
+                                <table class="table table-striped bg-white">
+                                    <thead>
+                                    <tr>
+                                        {% for column in list.column_names %}
+                                            <th scope="col">{{ column }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- HINT: Jinja loops may also work well here! -->
+                                    {% for row in list.rows %}
+                                        <tr>
+                                            <td>{{ row }}</td>
+                                            <td>{{ list.rows[row] }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </section>
     </main>
 </div>
