@@ -15,7 +15,8 @@
         <div class="row">
             <div class="col-xs-12">
                 <a href="/" data-click-type="header" data-click-text="Home" class="d-inline-block">
-                    <svg width="62px" viewBox="0 0 62 62" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <svg width="62px" viewBox="0 0 62 62" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-200.000000, -65.000000)" fill="#002E6E">
                                 <g id="logo" transform="translate(200.000000, 65.000000)">
@@ -52,70 +53,73 @@
 
 <div id="content">
     <main>
-      <!-- HINT: Bootstrap grid system is awesome :) - https://getbootstrap.com/docs/4.5/layout/grid/ -->
-      <section class="mb-5">
-          <div class="container bg-light py-3">
-              <div class="row">
-                  <div class="col-xs-12 px-3">
-                      <h5 class="mb-3">Beer Ratings &amp; Reviews</h5>
-                  </div>
-              </div>
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-                  <!-- HINT: You may want to look at Jinja loops - https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-control-structures -->
-                  <div class="col d-flex align-items-stretch mb-3">
-                    <!-- HINT: Bootstrap cards! - https://getbootstrap.com/docs/4.5/components/card/ -->
-                    <div class="card shadow rounded">
-                        <div class="card-body d-flex flex-column">
-                            <h6 class="card-subtitle mb-2 h6 text-radical-red text-uppercase">Stat Title</h6>
-                            <h4 class="card-title display-4">100%</h4>
-                            <h5 class="mb-5">Stat sub title</h5>
-                            <p class="card-text text-muted mt-auto">Stat footnote</p>
+        <!-- HINT: Bootstrap grid system is awesome :) - https://getbootstrap.com/docs/4.5/layout/grid/ -->
+        <section class="mb-5">
+            <div class="container bg-light py-3">
+                <div class="row">
+                    <div class="col-xs-12 px-3">
+                        <h5 class="mb-3">Beer Ratings &amp; Reviews</h5>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                    <!-- HINT: You may want to look at Jinja loops - https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-control-structures -->
+                    {% for card in cards %}
+                        <div class="col d-flex align-items-stretch mb-3">
+                            <!-- HINT: Bootstrap cards! - https://getbootstrap.com/docs/4.5/components/card/ -->
+                            <div class="card shadow rounded">
+                                <div class="card-body d-flex flex-column">
+                                    <h6 class="card-subtitle mb-2 h6 text-radical-red text-uppercase">{{ card.title }}</h6>
+                                    <h4 class="card-title display-4">{{ card.value }}</h4>
+                                    <h5 class="mb-5">{{ card.sub_title }}</h5>
+                                    <p class="card-text text-muted mt-auto">{{ card.foot_note }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="container-xl bg-light">
+                <div class="row">
+                    <div class="col p-3">
+                        <h5 class="mb-3">Beers by overall average</h5>
+                        <div class="table-responsive">
+                            <!-- HINT: Bootstrap tables - https://getbootstrap.com/docs/4.5/content/tables/ -->
+                            <table class="table table-striped bg-white">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- HINT: Jinja loops may also work well here! -->
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      <section class="mb-5">
-          <div class="container-xl bg-light">
-              <div class="row">
-                  <div class="col p-3">
-                      <h5 class="mb-3">Beers by overall average</h5>
-                      <div class="table-responsive">
-                        <!-- HINT: Bootstrap tables - https://getbootstrap.com/docs/4.5/content/tables/ -->
-                        <table class="table table-striped bg-white">
-                          <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <!-- HINT: Jinja loops may also work well here! -->
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                          </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </section>
-  </main>
+                </div>
+            </div>
+        </section>
+    </main>
 </div>
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/app/index.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script>
-  // HINT: You may want to use Chart JS here!
+    // HINT: You may want to use Chart JS here!
 </script>
 </body>
 </html>
