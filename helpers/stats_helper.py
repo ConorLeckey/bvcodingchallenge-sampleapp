@@ -15,7 +15,9 @@ class StatsHelper():
         result = self.database.fetch_one("SELECT AVG(review_aroma) FROM reviews")
         return result[0]
 
-
+    def get_ordered_by_ave_overall_rating(self):
+        result = self.database.fetch_all("SELECT beer_name, review_overall FROM reviews GROUP BY beer_name, review_overall")
+        return result
 
 
 
